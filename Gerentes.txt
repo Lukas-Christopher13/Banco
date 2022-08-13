@@ -1,0 +1,9 @@
+
+
+Nome    CPF             Sexo          Idade     Senha           gerente/cliente
+
+lukas	12345678901	Masculino	19	lukas1234	gerente	8382.0
+luiz	12345678902	Masculino	23	luiz1234	gerente	19099.0
+nicolas	12345678903	Masculino	20	nicolas1234	gerente	213.0
+denis	12345678904	Masculino	30	denis1234	gerente	23.0
+david	12345678905	Masculino	20	david1234	gerente	1000.0

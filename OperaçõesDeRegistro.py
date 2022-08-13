@@ -1,11 +1,11 @@
 import PySimpleGUI as sg
-from funcaoB import *
+from funcaoDoBancoDeDados import *
 
 #Checar erros em campos mal prenchidos 
 def ChecagemDecamposRegis(Dados):
     # Tratamento de erros que podem ser cometidos durante o prenchimento de quaisquer campos.
     if CamposEmBranco(Dados):
-        sg.popup("Prencha Todos os Campos!")        
+        sg.popup("Prencha Todos os Campos!")      
         return False
     
     elif ApenasLetras(Dados[0], 'Nome', (4,15)):
@@ -33,6 +33,36 @@ def ChecagemDecamposRegis(Dados):
     else:
         return True
 
+#checar os campos do registro da conta conjunta
+def ChecarDadosContaConjunta(Dados):
+    if CamposEmBranco(Dados):
+        sg.popup("Prencha Todos os Campos!")        
+        return False
+    
+    elif ApenasLetras(Dados[0], 'Nome', (4,15)):
+        return False
+
+    elif ApenasNumero(Dados[1], 'CPF', (11,)):
+        return False
+
+    elif checar('Clientes', Dados[1]) == False:
+        sg.popup('CPF 1 não cadastrado! Digite um CPF Cadastrado')
+        return False
+        
+    elif ApenasNumero(Dados[2], 'CPF', (11,)):
+        return False
+
+    elif checar('Clientes', Dados[2]) == False:
+        sg.popup('CPF 2 não cadastrado! Digite um CPF Cadastrado')
+        return False
+    
+    elif Dados[1] == Dados[2]:
+        sg.popup('Os dois CPFS devem ser diferentes!')
+        return False
+
+    else:
+        return True
+
 #checa se há campos em branco
 def CamposEmBranco(campos):
     for i in campos:
@@ -41,7 +71,7 @@ def CamposEmBranco(campos):
     return False
 
 #Verifica o tamanho de cada campo
-def VerificarTamanho(nomeDoCampo, campo, Tamanho):
+def VerificarTamanho(nomeDoCampo, campo, Tamanho): 
     if len(Tamanho) == 2:
         if (len(campo) < Tamanho[0]) or (len(campo) > Tamanho[1]):
             sg.popup('O campo %s dever ter no mininmo %d e no maximo %d caractres!' % (nomeDoCampo, Tamanho[0], Tamanho[1]))

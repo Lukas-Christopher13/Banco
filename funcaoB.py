@@ -7,10 +7,10 @@ def conectar():
     #(Nome Text, CPF Text, Sexo Text, Idade Int, Senha Text, Montante Real)''')
     return (cur, con)
 
-def checar(tabela, intem):
+def checar(tabela,intem):
     cur, con = conectar()
 
-    for i in cur.execute("SELECT * FROM %s" % (tabela)):
+    for i in cur.execute('SELECT * FROM  %s' % (tabela)):
         if intem in i:           
             con.close()
             return True
